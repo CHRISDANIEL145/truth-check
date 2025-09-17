@@ -1,0 +1,11 @@
+Flask
+spacy
+wikipedia
+requests
+transformers
+torch
+sentence-transformers
+scikit-learn
+numpy
+# feedparser              # Removed
+# beautifulsoup4          # Removed

@@ -1,0 +1,64 @@
+/* static/css/style.css - Global and Custom Styles for TruthCheck */
+
+/* Custom font import - Inter is a great modern choice for clean UIs */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* Define the custom font family for Tailwind's usage */
+@layer base {
+  body {
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+/* Custom scrollbar for a cleaner, modern look */
+::-webkit-scrollbar {
+    width: 8px; /* Width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+    background: #e0e0e0; /* Color of the tracking area */
+    border-radius: 10px; /* Rounded corners for the track */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #a0a0a0; /* Color of the scroll thumb */
+    border-radius: 10px; /* Rounded corners for the thumb */
+    border: 2px solid #e0e0e0; /* Creates a small border around the thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #888; /* Color of the thumb on hover */
+}
+
+/* Blob animation for background elements */
+@keyframes blob {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+    33% {
+        transform: translate(30px, -50px) scale(1.1);
+    }
+    66% {
+        transform: translate(-20px, 20px) scale(0.9);
+    }
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+}
+
+.animate-blob {
+    animation: blob 7s infinite cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+/* Delay for blob animation */
+.animation-delay-2000 {
+    animation-delay: 2s;
+}
+.animation-delay-4000 {
+    animation-delay: 4s;
+}
+
+/* Styles for example tags */
+.example-tag {
+    @apply inline-block bg-blue-100 text-blue-700 rounded-full px-3 py-1 text-sm cursor-pointer transition-all duration-200 ease-in-out hover:bg-blue-200 hover:text-blue-800 hover:shadow-sm active:scale-95;
+}
