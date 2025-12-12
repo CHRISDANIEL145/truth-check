@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Documentation | TruthCheck</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;900&family=Fira+Code:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Orbitron', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                            950: '#082f49',
+                        },
+                        neon: {
+                            cyan: '#00f3ff',
+                            purple: '#bc13fe',
+                        }
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'fade-in-up': 'fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            'from': { opacity: '0', transform: 'translate3d(0, 20px, 0)' },
+                            'to': { opacity: '1', transform: 'translate3d(0, 0, 0)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body
+    class="bg-slate-950 text-white min-h-screen relative overflow-x-hidden selection:bg-brand-500 selection:text-white">
+
+    <!-- Background Grid Effect -->
+    <div class="fixed inset-0 z-0 opacity-20 pointer-events-none">
+        <div
+            class="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]">
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="relative z-50 border-b border-white/10 backdrop-blur-md bg-slate-950/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <a href="/" class="flex items-center gap-3 group">
+                    <div
+                        class="relative w-10 h-10 flex items-center justify-center bg-brand-500/10 rounded-lg border border-brand-500/50 shadow-[0_0_15px_rgba(14,165,233,0.3)] group-hover:shadow-[0_0_25px_rgba(14,165,233,0.5)] transition-shadow">
+                        <i class="fa-solid fa-shield-halved text-brand-400 text-xl"></i>
+                    </div>
+                    <span
+                        class="font-display font-bold text-2xl tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400">
+                        TRUTH<span class="text-brand-400">CHECK</span>
+                    </span>
+                </a>
+                <div class="hidden md:flex gap-8">
+                    <a href="/"
+                        class="text-sm font-medium text-slate-300 hover:text-brand-400 transition-colors">Analyzer</a>
+                    <a href="/how-it-works"
+                        class="text-sm font-medium text-slate-300 hover:text-brand-400 transition-colors">How it
+                        Works</a>
+                    <a href="/api-docs" class="text-sm font-medium text-brand-400 border-b-2 border-brand-400">API</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="relative z-10 container mx-auto px-4 py-16">
+
+        <div class="max-w-4xl mx-auto space-y-12 animate-fade-in-up">
+
+            <!-- Header -->
+            <div class="space-y-4">
+                <h1 class="font-display text-4xl md:text-5xl font-bold text-white">REST API Reference</h1>
+                <p class="text-slate-400 text-lg">Integrate TruthCheck verification directly into your applications.</p>
+            </div>
+
+            <!-- Endpoint Card -->
+            <div class="bg-slate-900/50 border border-white/5 rounded-2xl overflow-hidden">
+                <div class="p-6 border-b border-white/5 bg-slate-900 flex justify-between items-center">
+                    <div class="flex items-center gap-4">
+                        <span
+                            class="px-3 py-1 bg-green-500/20 text-green-400 font-mono text-sm font-bold rounded">POST</span>
+                        <code class="text-lg text-white font-mono">/api/verify</code>
+                    </div>
+                </div>
+
+                <div class="p-8 space-y-8">
+                    <!-- Description -->
+                    <div>
+                        <h3 class="font-display text-lg text-white mb-2">Description</h3>
+                        <p class="text-slate-400">Submit a text claim for verification. The system will process the
+                            claim and return a verdict with supporting evidence.</p>
+                    </div>
+
+                    <!-- Request -->
+                    <div>
+                        <h3 class="font-display text-lg text-white mb-4">Request Body</h3>
+                        <div class="bg-slate-950 p-6 rounded-xl border border-white/10 relative group">
+                            <button class="absolute top-4 right-4 text-slate-500 hover:text-white transition-colors"><i
+                                    class="fa-regular fa-copy"></i></button>
+                            <pre><code class="language-json text-sm font-mono text-brand-300">{
+  "claim": "The Eiffel Tower is located in London"
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- Response -->
+                    <div>
+                        <h3 class="font-display text-lg text-white mb-4">Response</h3>
+                        <div class="bg-slate-950 p-6 rounded-xl border border-white/10 relative group">
+                            <button class="absolute top-4 right-4 text-slate-500 hover:text-white transition-colors"><i
+                                    class="fa-regular fa-copy"></i></button>
+                            <pre><code class="language-json text-sm font-mono text-emerald-300">{
+  "label": "False",
+  "confidence": 0.98,
+  "evidence": "**Analyzed 4 sources**...",
+  "claim": "The Eiffel Tower is located in London"
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Status Codes -->
+            <div class="bg-slate-900/50 border border-white/5 rounded-2xl overflow-hidden p-8">
+                <h3 class="font-display text-lg text-white mb-6">Status Codes</h3>
+                <div class="space-y-4">
+                    <div class="flex gap-4">
+                        <code class="text-green-400 font-mono font-bold w-12">200</code>
+                        <span class="text-slate-300">Successful verification.</span>
+                    </div>
+                    <div class="flex gap-4">
+                        <code class="text-amber-400 font-mono font-bold w-12">400</code>
+                        <span class="text-slate-300">Bad request (missing claim).</span>
+                    </div>
+                    <div class="flex gap-4">
+                        <code class="text-red-400 font-mono font-bold w-12">500</code>
+                        <span class="text-slate-300">Internal server error.</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="relative z-10 border-t border-white/5 mt-20 bg-slate-950">
+        <div
+            class="max-w-7xl mx-auto px-4 py-8 flex flex-col md:flex-row items-center justify-between text-slate-500 text-sm">
+            <div>&copy; 2025 TruthCheck AI. All Systems Nominal.</div>
+            <div class="flex gap-4 mt-4 md:mt-0">
+                <a href="#" class="hover:text-brand-400 transition-colors">Privacy</a>
+                <a href="#" class="hover:text-brand-400 transition-colors">Terms</a>
+                <a href="https://github.com/CHRISDANIEL145" class="hover:text-brand-400 transition-colors">Github</a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
