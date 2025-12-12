@@ -5,7 +5,7 @@
 ![License](https://img.shields.io/badge/License-MIT-green)
 
 A state-of-the-art **Automated Fact-Checking System** that uses a multi-stage neural pipeline to verify text claims in real-time. It combines **Web Scraping**, **Semantic Search**, and **Natural Language Inference (NLI)** to determine the truthfulness of statements with high precision.
-
+## Application link :" https://huggingface.co/spaces/Danielchris145/TruthCheck-AI "
 ---
 
 ## 🌟 Key Features
